@@ -1,0 +1,11 @@
+{
+  "@@locale": "ru",
+  "appName": "Hasanat",
+  "welcomeSubtitle": "Соревнуемся в добрых делах",
+  "start": "Начать",
+  "tabHome": "Главная",
+  "tabSalawat": "Салават",
+  "tabLeaderboard": "Рейтинг",
+  "tabMosques": "Мечети",
+  "tabProfile": "Профиль"
+}
