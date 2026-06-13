@@ -1,0 +1,21 @@
+# Hasanat CI: kod sifatini tekshirish va testlar
+image: ghcr.io/cirruslabs/flutter:stable
+
+stages:
+  - analyze
+  - test
+
+before_script:
+  - flutter --version
+  - cp .env.example .env || true
+  - flutter pub get
+
+analyze:
+  stage: analyze
+  script:
+    - flutter analyze
+
+test:
+  stage: test
+  script:
+    - flutter test
