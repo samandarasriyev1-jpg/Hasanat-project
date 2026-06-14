@@ -1,11 +1,39 @@
 {
   "@@locale": "uz",
   "appName": "Hasanat",
+  "welcomeTitle": "Hasanat",
   "welcomeSubtitle": "Yaxshilikda bellashaylik",
+  "welcomeDescription": "Salovat ayting, ehson qiling, hasharga qatnashing va yaxshilikda mahalla, tuman, viloyat bo'ylab bellashing.",
   "start": "Boshlash",
   "tabHome": "Bosh sahifa",
   "tabSalawat": "Salovat",
   "tabLeaderboard": "Reyting",
   "tabMosques": "Masjidlar",
-  "tabProfile": "Profil"
+  "tabProfile": "Profil",
+  "comingSoon": "{section} bo'limi tez orada",
+  "@comingSoon": {
+    "description": "Hali tayyor bo'lmagan bo'lim uchun placeholder",
+    "placeholders": {
+      "section": {
+        "type": "String",
+        "example": "Reyting"
+      }
+    }
+  },
+  "salawatTitle": "Salovat",
+  "salawatToday": "Bugun",
+  "salawatTotal": "Jami",
+  "salawatPoints": "Ball",
+  "salawatTapHint": "Salovat aytib, tugmani bosing",
+  "salawatReset": "Tiklash",
+  "salawatResetConfirm": "Hisoblagichni nolga tushirishni xohlaysizmi?",
+  "cancel": "Bekor qilish",
+  "confirm": "Tasdiqlash",
+  "profileLanguage": "Til",
+  "languageSystem": "Tizim tili",
+  "languageUzbek": "O'zbekcha",
+  "languageRussian": "Ruscha",
+  "languageEnglish": "Inglizcha",
+  "retry": "Qayta urinish",
+  "genericError": "Xatolik yuz berdi"
 }

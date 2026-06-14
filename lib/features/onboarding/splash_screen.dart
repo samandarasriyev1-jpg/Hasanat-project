@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/theme/app_colors.dart';
+import '../../l10n/app_localizations.dart';
+import 'application/onboarding_controller.dart';
 
 /// Chiroyli animatsiyali splash ekrani.
-class SplashScreen extends StatefulWidget {
+class SplashScreen extends ConsumerStatefulWidget {
   const SplashScreen({super.key});
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
+  ConsumerState<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen>
+class _SplashScreenState extends ConsumerState<SplashScreen>
     with SingleTickerProviderStateMixin {
   late final AnimationController _controller = AnimationController(
     vsync: this,
@@ -27,7 +30,10 @@ class _SplashScreenState extends State<SplashScreen>
   void initState() {
     super.initState();
     Future<void>.delayed(const Duration(milliseconds: 2200), () {
-      if (mounted) context.go('/welcome');
+      if (!mounted) return;
+      // Onboarding ko'rilgan bo'lsa to'g'ridan-to'g'ri home'ga, aks holda welcome'ga.
+      final seen = ref.read(onboardingControllerProvider);
+      context.go(seen ? '/home' : '/welcome');
     });
   }
 
@@ -82,7 +88,7 @@ class _SplashScreenState extends State<SplashScreen>
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'Yaxshilikda bellashaylik',
+                    AppLocalizations.of(context)!.welcomeSubtitle,
                     style: TextStyle(
                       color: Colors.white.withValues(alpha: 0.85),
                       fontSize: 15,

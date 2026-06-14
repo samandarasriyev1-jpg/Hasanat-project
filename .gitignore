@@ -6,7 +6,10 @@ build/
 .flutter-plugins-dependencies
 .pub-cache/
 .pub/
-pubspec.lock
+# Eslatma: pubspec.lock ILOVALAR uchun commit qilinadi (kutubxonalar uchun emas).
+
+# Generatsiya qilinadigan lokalizatsiya
+lib/l10n/app_localizations*.dart
 
 # IDE
 .idea/

@@ -2,10 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import 'core/providers/app_providers.dart';
 import 'core/router/app_router.dart';
 import 'core/services/supabase_service.dart';
 import 'core/theme/app_theme.dart';
+import 'core/utils/app_logger.dart';
+import 'features/settings/application/locale_controller.dart';
 import 'l10n/app_localizations.dart';
 
 Future<void> main() async {
@@ -15,19 +19,31 @@ Future<void> main() async {
   try {
     await dotenv.load(fileName: '.env');
   } catch (_) {
-    // .env topilmadi — ilova offline rejimda ishlayveradi.
+    AppLogger.info('.env topilmadi — ilova offline rejimda ishlaydi.');
   }
 
   await SupabaseService.init();
 
-  runApp(const ProviderScope(child: HasanatApp()));
+  // Lokal saqlash — boshqa providerlar shunga tayanadi.
+  final prefs = await SharedPreferences.getInstance();
+
+  runApp(
+    ProviderScope(
+      overrides: [
+        sharedPreferencesProvider.overrideWithValue(prefs),
+      ],
+      child: const HasanatApp(),
+    ),
+  );
 }
 
-class HasanatApp extends StatelessWidget {
+class HasanatApp extends ConsumerWidget {
   const HasanatApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final locale = ref.watch(localeControllerProvider);
+
     return MaterialApp.router(
       title: 'Hasanat',
       debugShowCheckedModeBanner: false,
@@ -35,6 +51,7 @@ class HasanatApp extends StatelessWidget {
       darkTheme: AppTheme.dark,
       themeMode: ThemeMode.system,
       routerConfig: AppRouter.router,
+      locale: locale,
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,

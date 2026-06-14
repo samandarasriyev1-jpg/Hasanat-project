@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
 import '../../core/theme/app_spacing.dart';
+import '../../l10n/app_localizations.dart';
+import '../profile/presentation/profile_screen.dart';
+import '../salawat/presentation/salawat_screen.dart';
 
-/// Asosiy ekran — bottom navigation bilan (tablar hozircha placeholder).
+/// Asosiy ekran — NavigationBar bilan 5 ta bo'lim.
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -13,49 +16,74 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _index = 0;
 
-  static const List<_TabInfo> _tabs = [
-    _TabInfo('Bosh sahifa', Icons.home_rounded),
-    _TabInfo('Salovat', Icons.favorite_rounded),
-    _TabInfo('Reyting', Icons.leaderboard_rounded),
-    _TabInfo('Masjidlar', Icons.mosque_rounded),
-    _TabInfo('Profil', Icons.person_rounded),
-  ];
-
   @override
   Widget build(BuildContext context) {
-    final _TabInfo tab = _tabs[_index];
+    final l10n = AppLocalizations.of(context)!;
+
+    final labels = <String>[
+      l10n.tabHome,
+      l10n.tabSalawat,
+      l10n.tabLeaderboard,
+      l10n.tabMosques,
+      l10n.tabProfile,
+    ];
+    const icons = <IconData>[
+      Icons.home_rounded,
+      Icons.favorite_rounded,
+      Icons.leaderboard_rounded,
+      Icons.mosque_rounded,
+      Icons.person_rounded,
+    ];
+
+    final pages = <Widget>[
+      _ComingSoon(section: l10n.tabHome, icon: icons[0]),
+      const SalawatScreen(),
+      _ComingSoon(section: l10n.tabLeaderboard, icon: icons[2]),
+      _ComingSoon(section: l10n.tabMosques, icon: icons[3]),
+      const ProfileScreen(),
+    ];
+
     return Scaffold(
-      appBar: AppBar(title: Text(tab.label)),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(AppSpacing.lg),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(tab.icon, size: 72, color: Theme.of(context).colorScheme.primary),
-              const SizedBox(height: AppSpacing.md),
-              Text(
-                '${tab.label} bo'limi tez orada',
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
-            ],
-          ),
-        ),
-      ),
+      appBar: AppBar(title: Text(labels[_index])),
+      body: SafeArea(child: pages[_index]),
       bottomNavigationBar: NavigationBar(
         selectedIndex: _index,
         onDestinationSelected: (i) => setState(() => _index = i),
         destinations: [
-          for (final _TabInfo t in _tabs)
-            NavigationDestination(icon: Icon(t.icon), label: t.label),
+          for (int i = 0; i < labels.length; i++)
+            NavigationDestination(icon: Icon(icons[i]), label: labels[i]),
         ],
       ),
     );
   }
 }
 
-class _TabInfo {
-  const _TabInfo(this.label, this.icon);
-  final String label;
+/// Hali tayyor bo'lmagan bo'limlar uchun placeholder.
+class _ComingSoon extends StatelessWidget {
+  const _ComingSoon({required this.section, required this.icon});
+
+  final String section;
   final IconData icon;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(AppSpacing.lg),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(icon, size: 72, color: Theme.of(context).colorScheme.primary),
+            const SizedBox(height: AppSpacing.md),
+            Text(
+              l10n.comingSoon(section),
+              style: Theme.of(context).textTheme.titleLarge,
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
