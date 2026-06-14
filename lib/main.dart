@@ -43,6 +43,7 @@ class HasanatApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final locale = ref.watch(localeControllerProvider);
+    final router = ref.watch(goRouterProvider);
 
     return MaterialApp.router(
       title: 'Hasanat',
@@ -50,7 +51,7 @@ class HasanatApp extends ConsumerWidget {
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
       themeMode: ThemeMode.system,
-      routerConfig: AppRouter.router,
+      routerConfig: router,
       locale: locale,
       localizationsDelegates: const [
         AppLocalizations.delegate,

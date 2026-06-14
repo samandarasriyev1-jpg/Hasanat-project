@@ -8,6 +8,7 @@ viloyat → respublika kesimida yaxshilikda bellashadi.
 
 ## Asosiy funksiyalar
 
+- ✅ **Autentifikatsiya** (Supabase: email + parol) va sessiya boshqaruvi
 - ✅ **Salovat counter** va ball tizimi (lokal saqlash bilan)
 - ✅ Ko'p tillilik (uz / ru / en) va til almashtirish
 - 🔜 **Leaderboard** — TOP 20 (qishloq / tuman / viloyat / respublika)
@@ -42,6 +43,7 @@ lib/
     router/      # AppRouter (go_router)
   features/      # Har bir funksiya alohida modul (domain/data/application/presentation)
     onboarding/  # Splash, Welcome
+    auth/        # Kirish / ro'yxatdan o'tish (Supabase)
     salawat/     # Salovat counter (etalon namuna)
     profile/     # Profil
     settings/    # Til sozlamasi
@@ -103,5 +105,5 @@ ga qarang. Qisqacha: feature-first tuzilma, qatlamlar (`domain` / `data` /
 ## Yo'l xaritasi
 
 Joriy bosqich: **MVP**. Tayyor: dizayn tizimi, onboarding, lokalizatsiya
-(uz/ru/en), Salovat counter (lokal). Keyingi: Auth, Leaderboard, Masjid
-xaritasi, Ehson, Namoz vaqtlari, Feed, Ta'lim.
+(uz/ru/en), autentifikatsiya (Supabase), Salovat counter (lokal). Keyingi:
+Leaderboard, Masjid xaritasi, Ehson, Namoz vaqtlari, Feed, Ta'lim.

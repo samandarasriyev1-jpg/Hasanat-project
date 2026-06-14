@@ -26,5 +26,19 @@
   "languageRussian": "Russian",
   "languageEnglish": "English",
   "retry": "Retry",
-  "genericError": "An error occurred"
+  "genericError": "An error occurred",
+  "authSignInTitle": "Welcome back",
+  "authSignUpTitle": "Create account",
+  "authEmail": "Email",
+  "authPassword": "Password",
+  "authName": "Your name",
+  "authSignIn": "Sign in",
+  "authSignUp": "Sign up",
+  "authNoAccount": "No account? Sign up",
+  "authHaveAccount": "Already have an account? Sign in",
+  "authSignOut": "Sign out",
+  "authAccount": "Account",
+  "authEmailInvalid": "Enter a valid email",
+  "authPasswordShort": "Password must be at least 6 characters",
+  "authFieldRequired": "This field is required"
 }

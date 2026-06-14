@@ -26,5 +26,19 @@
   "languageRussian": "Русский",
   "languageEnglish": "Английский",
   "retry": "Повторить",
-  "genericError": "Произошла ошибка"
+  "genericError": "Произошла ошибка",
+  "authSignInTitle": "Добро пожаловать",
+  "authSignUpTitle": "Создать аккаунт",
+  "authEmail": "Email",
+  "authPassword": "Пароль",
+  "authName": "Ваше имя",
+  "authSignIn": "Войти",
+  "authSignUp": "Зарегистрироваться",
+  "authNoAccount": "Нет аккаунта? Зарегистрируйтесь",
+  "authHaveAccount": "Уже есть аккаунт? Войдите",
+  "authSignOut": "Выйти",
+  "authAccount": "Аккаунт",
+  "authEmailInvalid": "Введите корректный email",
+  "authPasswordShort": "Пароль должен быть не короче 6 символов",
+  "authFieldRequired": "Это поле обязательно"
 }

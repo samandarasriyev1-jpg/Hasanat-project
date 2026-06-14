@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_spacing.dart';
@@ -53,13 +52,9 @@ class WelcomeScreen extends ConsumerWidget {
               GradientButton(
                 label: l10n.start,
                 icon: Icons.arrow_forward_rounded,
-                onPressed: () async {
-                  await ref
-                      .read(onboardingControllerProvider.notifier)
-                      .complete();
-                  if (context.mounted) {
-                    context.go('/home');
-                  }
+                onPressed: () {
+                  // Onboarding tugadi — router avtomatik /sign-in ga yo'naltiradi.
+                  ref.read(onboardingControllerProvider.notifier).complete();
                 },
               ),
               const SizedBox(height: AppSpacing.md),
