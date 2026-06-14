@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_spacing.dart';
+import '../../l10n/app_localizations.dart';
 import '../../shared/widgets/gradient_button.dart';
+import 'application/onboarding_controller.dart';
 
 /// Welcome / Onboarding ekrani — premium dizaynda.
-class WelcomeScreen extends StatelessWidget {
+class WelcomeScreen extends ConsumerWidget {
   const WelcomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
     final TextTheme text = Theme.of(context).textTheme;
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -34,22 +39,28 @@ class WelcomeScreen extends StatelessWidget {
               ),
               const SizedBox(height: AppSpacing.lg),
               Text(
-                'Hasanat',
+                l10n.welcomeTitle,
                 style: text.headlineMedium,
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: AppSpacing.sm),
               Text(
-                'Salovat ayting, ehson qiling, hasharga qatnashing va '
-                'yaxshilikda mahalla, tuman, viloyat bo'ylab bellashing.',
+                l10n.welcomeDescription,
                 style: text.bodyLarge,
                 textAlign: TextAlign.center,
               ),
               const Spacer(),
               GradientButton(
-                label: 'Boshlash',
+                label: l10n.start,
                 icon: Icons.arrow_forward_rounded,
-                onPressed: () => context.go('/home'),
+                onPressed: () async {
+                  await ref
+                      .read(onboardingControllerProvider.notifier)
+                      .complete();
+                  if (context.mounted) {
+                    context.go('/home');
+                  }
+                },
               ),
               const SizedBox(height: AppSpacing.md),
             ],

@@ -25,6 +25,9 @@ dependencies:
   # Config
   flutter_dotenv: ^5.1.0
 
+  # Local storage
+  shared_preferences: ^2.3.2
+
   # UI
   google_fonts: ^6.2.1
   intl: any
