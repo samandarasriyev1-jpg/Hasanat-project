@@ -88,3 +88,19 @@ flutter test
 ```
 
 CI (`.github/workflows/ci.yml`) har push va PR'da shu uchtasini ishlatadi.
+
+
+## Autentifikatsiya va navigatsiya (router guard)
+
+- **Auth holati:** `authControllerProvider` (`Notifier<AuthUser?>`) joriy
+  foydalanuvchini ushlab turadi. `build()` Supabase auth oqimini (stream)
+  tinglab, kirish/chiqishda holatni avtomatik yangilaydi.
+- **Router:** `goRouterProvider` `refreshListenable` orqali auth, onboarding va
+  splash holatini kuzatadi va `redirect` da quyidagicha yo'naltiradi:
+  1. Splash animatsiyasi tugamaguncha → `/`
+  2. Onboarding ko'rilmagan → `/welcome`
+  3. Kirilmagan → `/sign-in`
+  4. Kirilgan → `/home`
+- **Offline rejim:** Supabase kalitlari yo'q bo'lsa, `SupabaseAuthRepository`
+  xushmuomala ishlaydi (foydalanuvchi `null`, kirishda tushunarli `Failure`).
+  Shu sabab UIni backendsiz ham ko'rish mumkin.

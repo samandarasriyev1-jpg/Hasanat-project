@@ -35,5 +35,19 @@
   "languageRussian": "Ruscha",
   "languageEnglish": "Inglizcha",
   "retry": "Qayta urinish",
-  "genericError": "Xatolik yuz berdi"
+  "genericError": "Xatolik yuz berdi",
+  "authSignInTitle": "Xush kelibsiz",
+  "authSignUpTitle": "Hisob yaratish",
+  "authEmail": "Email",
+  "authPassword": "Parol",
+  "authName": "Ismingiz",
+  "authSignIn": "Kirish",
+  "authSignUp": "Ro'yxatdan o'tish",
+  "authNoAccount": "Hisobingiz yo'qmi? Ro'yxatdan o'ting",
+  "authHaveAccount": "Hisobingiz bormi? Kiring",
+  "authSignOut": "Chiqish",
+  "authAccount": "Hisob",
+  "authEmailInvalid": "To'g'ri email kiriting",
+  "authPasswordShort": "Parol kamida 6 ta belgidan iborat bo'lsin",
+  "authFieldRequired": "Bu maydon to'ldirilishi shart"
 }

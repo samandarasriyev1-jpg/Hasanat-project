@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
+import '../../core/router/app_router.dart';
 import '../../core/theme/app_colors.dart';
 import '../../l10n/app_localizations.dart';
-import 'application/onboarding_controller.dart';
 
 /// Chiroyli animatsiyali splash ekrani.
 class SplashScreen extends ConsumerStatefulWidget {
@@ -31,9 +30,8 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
     super.initState();
     Future<void>.delayed(const Duration(milliseconds: 2200), () {
       if (!mounted) return;
-      // Onboarding ko'rilgan bo'lsa to'g'ridan-to'g'ri home'ga, aks holda welcome'ga.
-      final seen = ref.read(onboardingControllerProvider);
-      context.go(seen ? '/home' : '/welcome');
+      // Navigatsiyani router (redirect) hal qiladi: onboarding/auth holatiga qarab.
+      ref.read(splashCompletedProvider.notifier).state = true;
     });
   }
 
